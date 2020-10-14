@@ -15,6 +15,9 @@ public class Card : MonoBehaviour
     public Player player;
     
     private GameObject dropZone;
+    
+    private Transform canvas;
+    private Transform startParent;
 
     private bool isDragging = false;
     private bool isOverDropZone = false;
@@ -22,6 +25,11 @@ public class Card : MonoBehaviour
     private Vector2 startPosition;
 
     #endregion
+
+    private void Awake()
+    {
+        canvas = GameObject.Find("Main Canvas").transform;
+    }
 
     private void Start()
     {
@@ -44,12 +52,14 @@ public class Card : MonoBehaviour
         if (isDragging)
         {
             transform.position = Input.mousePosition;
+            transform.SetParent(canvas.transform, true);
         }
     }
 
     public void StartDrag()
     {
         startPosition = transform.position;
+        startParent = transform.parent;
         isDragging = true;
     }
 
@@ -64,6 +74,7 @@ public class Card : MonoBehaviour
         else
         {
             transform.position = startPosition;
+            transform.SetParent(startParent, false);
         }
     }
 
