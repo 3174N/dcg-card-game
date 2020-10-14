@@ -14,6 +14,7 @@ public class Card : MonoBehaviour
     }
     public Player player;
     
+    [Header("Drag & Drop")]
     private GameObject dropZone;
     
     private Transform canvas;
@@ -23,6 +24,9 @@ public class Card : MonoBehaviour
     private bool isOverDropZone = false;
 
     private Vector2 startPosition;
+
+    [Header("Zoom")]
+    private GameObject zoomCard;
 
     #endregion
 
@@ -76,6 +80,24 @@ public class Card : MonoBehaviour
             transform.position = startPosition;
             transform.SetParent(startParent, false);
         }
+    }
+
+    public void OnHoverEnter()
+    {
+        zoomCard = Instantiate(gameObject, canvas, true);
+
+        zoomCard.layer = LayerMask.NameToLayer("Zoom");
+
+        RectTransform rect = zoomCard.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(240, 360);
+        rect.anchorMin = new Vector2(1f, 0.5f);
+        rect.anchorMax = new Vector2(1f, 0.5f);
+        rect.anchoredPosition = new Vector3(-165, 0);
+    }
+
+    public void OnHoverExit()
+    {
+        Destroy(zoomCard);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
