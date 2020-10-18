@@ -21,11 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c9c3c8c6-337f-433d-976b-e027f1c0ff81" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.dcg-card-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.dcg-card-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Card1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Card1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Card2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Card2.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Card.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Card.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +80,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602658904873</updated>
-      <workItem from="1602658919319" duration="2647000" />
+      <workItem from="1602658919319" duration="3260000" />
     </task>
     <servers />
   </component>
