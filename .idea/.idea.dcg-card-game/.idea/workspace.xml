@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c9c3c8c6-337f-433d-976b-e027f1c0ff81" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.dcg-card-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.dcg-card-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Card.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Card.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602658904873</updated>
       <workItem from="1602658919319" duration="3260000" />
+      <workItem from="1603182298258" duration="1232000" />
     </task>
     <servers />
   </component>
@@ -99,6 +99,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
