@@ -1,95 +1,97 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Mirror;
 using UnityEngine;
 
-public class Card : NetworkBehaviour
+public class Card : MonoBehaviour
 {
     #region Variables
     
-    [Header("Drag & Drop")]
-    private GameObject _dropZone;
-    
-    private GameObject _enemyDropZone;
-    private GameObject _playerDropZone;
-    
-    private Transform _canvas;
-    private Transform _startParent;
+    public enum Player
+    {
+        Player,
+        Enemy
+    }
+    public Player player;
 
-    private bool _isDragging = false;
-    private bool _isOverDropZone = false;
-    private bool _isDraggable = true;
+    [Header("Drag & Drop")] 
+    public GameObject enemyDropZone;
+    public GameObject playerDropZone;
+    
+    private GameObject dropZone;
+    
+    private Transform canvas;
+    private Transform startParent;
 
-    private Vector2 _startPosition;
+    private bool isDragging = false;
+    private bool isOverDropZone = false;
+
+    private Vector2 startPosition;
 
     [Header("Zoom")]
-    private GameObject _zoomCard;
-
-    private PlayerManager _manager;
+    private GameObject zoomCard;
 
     #endregion
 
+    private void Awake()
+    {
+        canvas = GameObject.Find("Main Canvas").transform;
+    }
+
     private void Start()
     {
-        _canvas = GameObject.Find("Main Canvas").transform;
-        _enemyDropZone = GameObject.Find("EnemyDropZone");
-        _playerDropZone = GameObject.Find("PlayerDropZone");
-
-        _isDraggable = hasAuthority;
-
-        _dropZone = hasAuthority ? _playerDropZone : _enemyDropZone;
+        switch (player)
+        {
+            case Player.Player:
+                dropZone = playerDropZone;
+                break;
+            case Player.Enemy:
+                dropZone = enemyDropZone;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (_isDragging)
+        if (isDragging)
         {
             transform.position = Input.mousePosition;
-            transform.SetParent(_canvas.transform, true);
+            transform.SetParent(canvas.transform, true);
         }
     }
 
     public void StartDrag()
     {
-        if (!_isDraggable) return;
-        
-        _startPosition = transform.position;
-        _startParent = transform.parent;
-        _isDragging = true;
+        startPosition = transform.position;
+        startParent = transform.parent;
+        isDragging = true;
     }
 
     public void EndDrag()
     {
-        if (!_isDraggable) return;
-        
-        _isDragging = false;
+        isDragging = false;
 
-        if (_isOverDropZone)
+        if (isOverDropZone)
         {
-            transform.SetParent(_dropZone.transform, false);
-            _isDraggable = false;
-
-            NetworkIdentity networkIdentity = NetworkClient.connection.identity;
-            _manager = networkIdentity.GetComponent<PlayerManager>();
-
-            _manager.PlayCard(gameObject);
+            transform.SetParent(dropZone.transform, false);
         }
         else
         {
-            transform.position = _startPosition;
-            transform.SetParent(_startParent, false);
+            transform.position = startPosition;
+            transform.SetParent(startParent, false);
         }
     }
 
     public void OnHoverEnter()
     {
-        _zoomCard = Instantiate(gameObject, _canvas, true);
+        zoomCard = Instantiate(gameObject, canvas, true);
 
-        _zoomCard.layer = LayerMask.NameToLayer("Zoom");
+        zoomCard.layer = LayerMask.NameToLayer("Zoom");
 
-        RectTransform rect = _zoomCard.GetComponent<RectTransform>();
+        RectTransform rect = zoomCard.GetComponent<RectTransform>();
         rect.sizeDelta = new Vector2(240, 360);
         rect.anchorMin = new Vector2(1f, 0.5f);
         rect.anchorMax = new Vector2(1f, 0.5f);
@@ -98,22 +100,22 @@ public class Card : NetworkBehaviour
 
     public void OnHoverExit()
     {
-        Destroy(_zoomCard);
+        Destroy(zoomCard);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject == _dropZone)
+        if (other.gameObject == dropZone)
         {
-            _isOverDropZone = true;
+            isOverDropZone = true;
         }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject == _dropZone)
+        if (other.gameObject == dropZone)
         {
-            _isOverDropZone = false;
+            isOverDropZone = false;
         }
     }
 }

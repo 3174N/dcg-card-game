@@ -43,27 +43,13 @@ public class PlayerManager : NetworkBehaviour
         }
     }
 
-    public void PlayCard(GameObject card)
-    {
-        CmdPlayCard(card);
-    }
-
-    [Command]
-    private void CmdPlayCard(GameObject card)
-    {
-        RpcShowCard(card, "Played");
-    }
-
     [ClientRpc]
     void RpcShowCard(GameObject card, string type)
     {
         if (type == "Dealt")
         {
             card.transform.SetParent(hasAuthority ? playerArea.transform : enemyArea.transform);
-        }
-        else if (type == "Played")
-        {
-            card.transform.SetParent(hasAuthority ? playerDropZone.transform : enemyDropZone.transform);
+            card.GetComponent<Card>().player = hasAuthority ? Card.Player.Player : Card.Player.Enemy;
         }
     }
 }
