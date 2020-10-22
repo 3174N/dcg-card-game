@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
+  enemyDropZone: {fileID: 677762158612569223, guid: b8bca3f8d8110b1438e8a2481c6ff21f, type: 3}
+  playerDropZone: {fileID: 6207026332101948640, guid: ba64dd8c9c52f7843a044313605bf1e7, type: 3}
 --- !u!114 &-1248035302740939204
 MonoBehaviour:
   m_ObjectHideFlags: 0

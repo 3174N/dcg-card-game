@@ -123,20 +123,10 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &135871331 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6207026332101948640, guid: ba64dd8c9c52f7843a044313605bf1e7, type: 3}
-  m_PrefabInstance: {fileID: 6207026332236746627}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &135871332 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6207026332101948647, guid: ba64dd8c9c52f7843a044313605bf1e7, type: 3}
   m_PrefabInstance: {fileID: 6207026332236746627}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &462743798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 677762158612569223, guid: b8bca3f8d8110b1438e8a2481c6ff21f, type: 3}
-  m_PrefabInstance: {fileID: 677762159007577201}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &462743799 stripped
 RectTransform:
@@ -224,63 +214,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &619197873
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 619197875}
-  - component: {fileID: 619197874}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &619197874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619197873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbbda69d3a23d804ba1fb20364821127, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerArea: {fileID: 2054141154}
-  playerDropZone: {fileID: 135871331}
-  enemyArea: {fileID: 769902212}
-  enemyDropZone: {fileID: 462743798}
-  cards:
-  - {fileID: 1343927714080653139, guid: d3174c4c612719d4f9f2ae5ec2b87547, type: 3}
-  - {fileID: 7995186756266162281, guid: 3a674e4f5f69372439efb04074c34634, type: 3}
---- !u!4 &619197875
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619197873}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &769902212 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2052516303949208504, guid: 9131f40ae74859741a2b0edf16a403a7, type: 3}
-  m_PrefabInstance: {fileID: 2052516303359761724}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &769902213 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2052516303949208505, guid: 9131f40ae74859741a2b0edf16a403a7, type: 3}
@@ -481,7 +416,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1838287009
 GameObject:
@@ -580,18 +515,13 @@ RectTransform:
   - {fileID: 2054141155}
   - {fileID: 769902213}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &2054141154 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5515655929703186052, guid: 1ffc94c5b3aefb544b08c09c44432cff, type: 3}
-  m_PrefabInstance: {fileID: 5515655929335614054}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2054141155 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5515655929703186053, guid: 1ffc94c5b3aefb544b08c09c44432cff, type: 3}
@@ -1094,7 +1024,7 @@ PrefabInstance:
     - target: {fileID: 7056682414175745788, guid: b206db1f225b9564dbb633bf82e86bf8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 619197874}
+      objectReference: {fileID: 0}
     - target: {fileID: 7056682414175745789, guid: b206db1f225b9564dbb633bf82e86bf8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

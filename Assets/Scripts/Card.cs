@@ -13,8 +13,11 @@ public class Card : MonoBehaviour
         Enemy
     }
     public Player player;
+
+    [Header("Drag & Drop")] 
+    public GameObject enemyDropZone;
+    public GameObject playerDropZone;
     
-    [Header("Drag & Drop")]
     private GameObject dropZone;
     
     private Transform canvas;
@@ -40,10 +43,10 @@ public class Card : MonoBehaviour
         switch (player)
         {
             case Player.Player:
-                dropZone = GameManager.instance.playerDropZone;
+                dropZone = playerDropZone;
                 break;
             case Player.Enemy:
-                dropZone = GameManager.instance.enemyDropZone;
+                dropZone = enemyDropZone;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
