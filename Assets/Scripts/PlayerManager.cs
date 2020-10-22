@@ -39,14 +39,17 @@ public class PlayerManager : NetworkBehaviour
         {
             GameObject card = Instantiate(cards[Random.Range(0, cards.Count)], new Vector3(0f, 0f, 0f), Quaternion.identity);
             NetworkServer.Spawn(card, connectionToClient);
-            //card.GetComponent<Card>().player = Card.Player.Player;
+            RpcShowCard(card, "Dealt");
         }
-        
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    GameObject enemyCard = Instantiate(cards[Random.Range(0, cards.Count)], new Vector3(0f, 0f, 0f), Quaternion.identity);
-        //    enemyCard.transform.SetParent(enemyArea.transform, false);
-        //    enemyCard.GetComponent<Card>().player = Card.Player.Enemy;
-        //}
+    }
+
+    [ClientRpc]
+    void RpcShowCard(GameObject card, string type)
+    {
+        if (type == "Dealt")
+        {
+            card.transform.SetParent(hasAuthority ? playerArea.transform : enemyArea.transform);
+            card.GetComponent<Card>().player = hasAuthority ? Card.Player.Player : Card.Player.Enemy;
+        }
     }
 }
