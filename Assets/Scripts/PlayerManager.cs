@@ -13,6 +13,8 @@ public class PlayerManager : NetworkBehaviour
     private GameObject playerDropZone;
     private GameObject enemyArea;
     private GameObject enemyDropZone;
+    
+    [SyncVar] private int cardsPlayed = 0;
 
     #endregion
 
@@ -46,6 +48,8 @@ public class PlayerManager : NetworkBehaviour
     public void PlayCard(GameObject card)
     {
         CmdPlayCard(card);
+        cardsPlayed++;
+        Debug.Log(cardsPlayed);
     }
 
     [Command]
@@ -60,10 +64,14 @@ public class PlayerManager : NetworkBehaviour
         if (type == "Dealt")
         {
             card.transform.SetParent(hasAuthority ? playerArea.transform : enemyArea.transform);
+            if (!hasAuthority)
+                card.GetComponent<Card>().Flip();
         }
         else if (type == "Played")
-        {
+        { 
             card.transform.SetParent(hasAuthority ? playerDropZone.transform : enemyDropZone.transform);
+            if (!hasAuthority)
+                card.GetComponent<Card>().Flip();
         }
     }
 }

@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : NetworkBehaviour
 {
     #region Variables
+
+    public Sprite Front;
+    public Sprite Back;
     
     [Header("Drag & Drop")]
     private GameObject _dropZone;
@@ -49,6 +53,13 @@ public class Card : NetworkBehaviour
             transform.position = Input.mousePosition;
             transform.SetParent(_canvas.transform, true);
         }
+    }
+
+    public void Flip()
+    {
+        Sprite currentSprite = GetComponent<Image>().sprite;
+
+        GetComponent<Image>().sprite = (currentSprite == Front) ? Back : Front;
     }
 
     public void StartDrag()

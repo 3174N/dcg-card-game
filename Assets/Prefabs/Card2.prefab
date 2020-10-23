@@ -93,9 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30864f399b08ffa489689772b54223f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: 0
-  enemyDropZone: {fileID: 677762158612569223, guid: b8bca3f8d8110b1438e8a2481c6ff21f, type: 3}
-  playerDropZone: {fileID: 6207026332101948640, guid: ba64dd8c9c52f7843a044313605bf1e7, type: 3}
+  syncMode: 0
+  syncInterval: 0.1
+  Front: {fileID: 21300000, guid: 3f4d9665740bf1d42acb06994110ee4b, type: 3}
+  Back: {fileID: 21300000, guid: 6722370d23d79e04d8d982554f899c1b, type: 3}
 --- !u!114 &1218666454333621117
 MonoBehaviour:
   m_ObjectHideFlags: 0
