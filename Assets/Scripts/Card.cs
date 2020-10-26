@@ -1,130 +1,20 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Mirror;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
-public class Card : NetworkBehaviour
+[CreateAssetMenu(fileName = "New Card", menuName = "Card")]
+public class Card : ScriptableObject
 {
     #region Variables
 
-    public Sprite Front;
-    public Sprite Back;
-    
-    [Header("Drag & Drop")]
-    private GameObject _dropZone;
-    
-    private GameObject _enemyDropZone;
-    private GameObject _playerDropZone;
-    
-    private Transform _canvas;
-    private Transform _startParent;
+    public UnityEvent action;
 
-    private bool _isDragging = false;
-    private bool _isOverDropZone = false;
-    private bool _isDraggable = true;
+    public Sprite frontSprite;
+    public Sprite backSprite;
 
-    private Vector2 _startPosition;
-
-    [Header("Zoom")]
-    private GameObject _zoomCard;
-
-    private PlayerManager _manager;
+    public new string name;
+    public string description;
 
     #endregion
-
-    private void Start()
-    {
-        _canvas = GameObject.Find("Main Canvas").transform;
-        _enemyDropZone = GameObject.Find("EnemyDropZone");
-        _playerDropZone = GameObject.Find("PlayerDropZone");
-
-        _isDraggable = hasAuthority;
-
-        _dropZone = hasAuthority ? _playerDropZone : _enemyDropZone;
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        if (_isDragging)
-        {
-            transform.position = Input.mousePosition;
-            transform.SetParent(_canvas.transform, true);
-        }
-    }
-
-    public void Flip()
-    {
-        Sprite currentSprite = GetComponent<Image>().sprite;
-
-        GetComponent<Image>().sprite = (currentSprite == Front) ? Back : Front;
-    }
-
-    public void StartDrag()
-    {
-        if (!_isDraggable) return;
-        
-        _startPosition = transform.position;
-        _startParent = transform.parent;
-        _isDragging = true;
-    }
-
-    public void EndDrag()
-    {
-        if (!_isDraggable) return;
-        
-        _isDragging = false;
-
-        if (_isOverDropZone)
-        {
-            transform.SetParent(_dropZone.transform, false);
-            _isDraggable = false;
-
-            NetworkIdentity networkIdentity = NetworkClient.connection.identity;
-            _manager = networkIdentity.GetComponent<PlayerManager>();
-
-            _manager.PlayCard(gameObject);
-        }
-        else
-        {
-            transform.position = _startPosition;
-            transform.SetParent(_startParent, false);
-        }
-    }
-
-    public void OnHoverEnter()
-    {
-        _zoomCard = Instantiate(gameObject, _canvas, true);
-
-        _zoomCard.layer = LayerMask.NameToLayer("Zoom");
-
-        RectTransform rect = _zoomCard.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(240, 360);
-        rect.anchorMin = new Vector2(1f, 0.5f);
-        rect.anchorMax = new Vector2(1f, 0.5f);
-        rect.anchoredPosition = new Vector3(-165, 0);
-    }
-
-    public void OnHoverExit()
-    {
-        Destroy(_zoomCard);
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject == _dropZone)
-        {
-            _isOverDropZone = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject == _dropZone)
-        {
-            _isOverDropZone = false;
-        }
-    }
 }

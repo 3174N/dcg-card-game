@@ -7,14 +7,15 @@ public class PlayerManager : NetworkBehaviour
 {
     #region Variables
 
-    public List<GameObject> cards = new List<GameObject>();
+    public GameObject cardObject;
+    public List<Card> cards = new List<Card>();
 
-    private GameObject playerArea;
-    private GameObject playerDropZone;
-    private GameObject enemyArea;
-    private GameObject enemyDropZone;
-    
-    [SyncVar] private int cardsPlayed = 0;
+    private GameObject _playerArea;
+    private GameObject _playerDropZone;
+    private GameObject _enemyArea;
+    private GameObject _enemyDropZone;
+
+    [SyncVar] private int _cardsPlayed = 0;
 
     #endregion
 
@@ -22,10 +23,10 @@ public class PlayerManager : NetworkBehaviour
     {
         base.OnStartClient();
 
-        playerArea = GameObject.Find("PlayerArea");
-        playerDropZone = GameObject.Find("PlayerDropZone");
-        enemyArea = GameObject.Find("EnemyArea");
-        enemyDropZone = GameObject.Find("EnemyDropZone");
+        _playerArea = GameObject.Find("PlayerArea");
+        _playerDropZone = GameObject.Find("PlayerDropZone");
+        _enemyArea = GameObject.Find("EnemyArea");
+        _enemyDropZone = GameObject.Find("EnemyDropZone");
     }
 
     [Server]
@@ -39,7 +40,9 @@ public class PlayerManager : NetworkBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            GameObject card = Instantiate(cards[Random.Range(0, cards.Count)], new Vector3(0f, 0f, 0f), Quaternion.identity);
+            GameObject card = Instantiate(cardObject, new Vector3(0f, 0f, 0f),
+                Quaternion.identity);
+            card.GetComponent<CardManager>().card = cards[Random.Range(0, cards.Count)];
             NetworkServer.Spawn(card, connectionToClient);
             RpcShowCard(card, "Dealt");
         }
@@ -48,8 +51,8 @@ public class PlayerManager : NetworkBehaviour
     public void PlayCard(GameObject card)
     {
         CmdPlayCard(card);
-        cardsPlayed++;
-        Debug.Log(cardsPlayed);
+        _cardsPlayed++;
+        Debug.Log(_cardsPlayed);
     }
 
     [Command]
@@ -63,15 +66,15 @@ public class PlayerManager : NetworkBehaviour
     {
         if (type == "Dealt")
         {
-            card.transform.SetParent(hasAuthority ? playerArea.transform : enemyArea.transform);
-            if (!hasAuthority)
-                card.GetComponent<Card>().Flip();
+            card.transform.SetParent(hasAuthority ? _playerArea.transform : _enemyArea.transform);
+            card.transform.localScale = Vector3.one;
         }
         else if (type == "Played")
-        { 
-            card.transform.SetParent(hasAuthority ? playerDropZone.transform : enemyDropZone.transform);
-            if (!hasAuthority)
-                card.GetComponent<Card>().Flip();
+        {
+            card.transform.SetParent(hasAuthority ? _playerDropZone.transform : _enemyDropZone.transform);
         }
+
+        if (!hasAuthority)
+            card.GetComponent<CardManager>().Flip();
     }
 }

@@ -348,6 +348,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Card.cs" t="Include" />
+          <e p="CardManager.cs" t="Include" />
           <e p="DebugLogDisplay.cs" t="Include" />
           <e p="DrawCards.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />

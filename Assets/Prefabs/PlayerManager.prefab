@@ -81,10 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  playerArea: {fileID: 5515655929703186052, guid: 1ffc94c5b3aefb544b08c09c44432cff, type: 3}
-  playerDropZone: {fileID: 6207026332101948640, guid: ba64dd8c9c52f7843a044313605bf1e7, type: 3}
-  enemyArea: {fileID: 2052516303949208504, guid: 9131f40ae74859741a2b0edf16a403a7, type: 3}
-  enemyDropZone: {fileID: 677762158612569223, guid: b8bca3f8d8110b1438e8a2481c6ff21f, type: 3}
+  cardObject: {fileID: 1343927714080653139, guid: d3174c4c612719d4f9f2ae5ec2b87547, type: 3}
   cards:
-  - {fileID: 1343927714080653139, guid: d3174c4c612719d4f9f2ae5ec2b87547, type: 3}
-  - {fileID: 7995186756266162281, guid: 3a674e4f5f69372439efb04074c34634, type: 3}
+  - {fileID: 11400000, guid: adbac1f2789509b46a8dc888c96dfba0, type: 2}
+  - {fileID: 11400000, guid: 5f0eee3b7a34d7f4b9ff6eb167854fd2, type: 2}
