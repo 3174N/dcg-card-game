@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : NetworkBehaviour
 {
@@ -43,6 +44,7 @@ public class PlayerManager : NetworkBehaviour
             GameObject card = Instantiate(cardObject, new Vector3(0f, 0f, 0f),
                 Quaternion.identity);
             card.GetComponent<CardManager>().card = cards[Random.Range(0, cards.Count)];
+            Debug.Log(card.GetComponent<CardManager>().card);
             NetworkServer.Spawn(card, connectionToClient);
             RpcShowCard(card, "Dealt");
         }
@@ -68,6 +70,7 @@ public class PlayerManager : NetworkBehaviour
         {
             card.transform.SetParent(hasAuthority ? _playerArea.transform : _enemyArea.transform);
             card.transform.localScale = Vector3.one;
+            if (card.GetComponent<CardManager>().card == null) card.GetComponent<CardManager>().card = cards[Random.Range(0, cards.Count)];
         }
         else if (type == "Played")
         {

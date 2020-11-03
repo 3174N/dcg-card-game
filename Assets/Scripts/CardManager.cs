@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class CardManager : NetworkBehaviour
 {
@@ -33,6 +33,11 @@ public class CardManager : NetworkBehaviour
 
     private void Start()
     {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        _manager = networkIdentity.GetComponent<PlayerManager>();
+        
+        card = _manager.cards[UnityEngine.Random.Range(0, _manager.cards.Count)];
+        
         _canvas = GameObject.Find("Main Canvas").transform;
         _enemyDropZone = GameObject.Find("EnemyDropZone");
         _playerDropZone = GameObject.Find("PlayerDropZone");
@@ -40,8 +45,8 @@ public class CardManager : NetworkBehaviour
         _isDraggable = hasAuthority;
 
         _dropZone = hasAuthority ? _playerDropZone : _enemyDropZone;
-
-        GetComponent<Image>().sprite = card.frontSprite;
+        
+        GetComponent<Image>().sprite = hasAuthority ? card.frontSprite : card.backSprite;
     }
 
     // Update is called once per frame
@@ -79,9 +84,6 @@ public class CardManager : NetworkBehaviour
         if (_isOverDropZone)
         {
             _isDraggable = false;
-
-            NetworkIdentity networkIdentity = NetworkClient.connection.identity;
-            _manager = networkIdentity.GetComponent<PlayerManager>();
 
             _manager.PlayCard(gameObject);
 
