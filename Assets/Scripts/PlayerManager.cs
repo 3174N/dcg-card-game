@@ -77,6 +77,13 @@ public class PlayerManager : NetworkBehaviour
         else if (type == "Played")
         {
             card.transform.SetParent(hasAuthority ? _playerDropZone.transform : _enemyDropZone.transform);
+            if (hasAuthority)
+            {
+                if (card.GetComponent<CardManager>().card.action != null)
+                {
+                    card.GetComponent<CardManager>().card.action.Invoke();
+                }
+            }
         }
 
         if (!hasAuthority)
