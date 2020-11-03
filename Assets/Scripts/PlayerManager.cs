@@ -8,6 +8,8 @@ public class PlayerManager : NetworkBehaviour
 {
     #region Variables
 
+    public int HP = 20;
+
     public GameObject cardObject;
     public List<Card> cards = new List<Card>();
 
