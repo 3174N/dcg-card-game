@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerManager : NetworkBehaviour
 {
@@ -13,12 +16,16 @@ public class PlayerManager : NetworkBehaviour
     public GameObject cardObject;
     public List<Card> cards = new List<Card>();
 
+    public bool isTurn;
+
     private GameObject _playerArea;
     private GameObject _playerDropZone;
     private GameObject _enemyArea;
     private GameObject _enemyDropZone;
 
     [SyncVar] private int _cardsPlayed = 0;
+
+    private List<PlayerManager> _players;
 
     #endregion
 
@@ -30,6 +37,12 @@ public class PlayerManager : NetworkBehaviour
         _playerDropZone = GameObject.Find("PlayerDropZone");
         _enemyArea = GameObject.Find("EnemyArea");
         _enemyDropZone = GameObject.Find("EnemyDropZone");
+        
+        _players = FindObjectsOfType<PlayerManager>().ToList();
+        foreach (PlayerManager player in _players)
+        {
+            player.isTurn = (player == this);
+        }
     }
 
     [Server]
@@ -77,11 +90,17 @@ public class PlayerManager : NetworkBehaviour
         else if (type == "Played")
         {
             card.transform.SetParent(hasAuthority ? _playerDropZone.transform : _enemyDropZone.transform);
-            if (hasAuthority)
+            if (hasAuthority && isTurn)
             {
-                if (card.GetComponent<CardManager>().card.action != null)
+                card.GetComponent<CardManager>().card.action?.Invoke();
+                foreach (PlayerManager player in _players)
                 {
-                    card.GetComponent<CardManager>().card.action.Invoke();
+                    player.isTurn = (player != this);
+                    Debug.Log(player + " : " + isTurn);
+                }
+                foreach (CardManager cardManager in FindObjectsOfType<CardManager>())
+                {
+                    cardManager.UpdateDrag();
                 }
             }
         }

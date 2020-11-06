@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9208253148876012395}
   m_Layer: 0
   m_Name: PlayerManager
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,6 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  HP: 20
   cardObject: {fileID: 1343927714080653139, guid: d3174c4c612719d4f9f2ae5ec2b87547, type: 3}
   cards:
   - {fileID: 11400000, guid: adbac1f2789509b46a8dc888c96dfba0, type: 2}

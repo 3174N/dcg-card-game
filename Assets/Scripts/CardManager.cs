@@ -42,7 +42,7 @@ public class CardManager : NetworkBehaviour
         _enemyDropZone = GameObject.Find("EnemyDropZone");
         _playerDropZone = GameObject.Find("PlayerDropZone");
 
-        _isDraggable = hasAuthority;
+        _isDraggable = hasAuthority && _manager.isTurn;
 
         _dropZone = hasAuthority ? _playerDropZone : _enemyDropZone;
         
@@ -57,6 +57,12 @@ public class CardManager : NetworkBehaviour
             transform.position = Input.mousePosition;
             transform.SetParent(_canvas.transform, true);
         }
+    }
+
+    public void UpdateDrag()
+    {
+        _isDraggable = hasAuthority && _manager.isTurn;
+        Debug.Log(_manager.isTurn);
     }
 
     public void Flip()
