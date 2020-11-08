@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9c3c8c6-337f-433d-976b-e027f1c0ff81" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.dcg-card-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.dcg-card-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayerManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayerManager.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CardManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CardManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="c9c3c8c6-337f-433d-976b-e027f1c0ff81" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,7 +107,7 @@
       <workItem from="1603634236520" duration="20000" />
       <workItem from="1603634970048" duration="1345000" />
       <workItem from="1603690547047" duration="3882000" />
-      <workItem from="1604391758174" duration="6068000" />
+      <workItem from="1604391758174" duration="6689000" />
     </task>
     <servers />
   </component>
