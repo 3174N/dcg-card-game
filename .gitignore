@@ -27,7 +27,7 @@
 .idea/usage.statistics.xml
 .idea/tasks.xml
 .idea/shelf
-.idea
+.idea/
 
 # Gradle cache directory
 .gradle/
